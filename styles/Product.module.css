@@ -1,0 +1,105 @@
+.container {
+  height: calc(100vh - 10rem);
+  display: flex;
+}
+.left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+.imgContainer {
+  height: 80%;
+  width: 80%;
+  position: relative;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+.title {
+  margin-bottom: 2rem;
+}
+.price {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--main-color);
+}
+.desc {
+  max-width: 50%;
+  color: var(--medium-color);
+  margin: 0.5rem 0 2rem;
+}
+.sizesContainer {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.sizeTitle {
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.size {
+  padding: 0.5rem;
+  margin-right: 2rem;
+  width: 7.5rem;
+  height: 7.5rem;
+  background-color: var(--medium-light-color);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.sizeName {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--main-color);
+  font-weight: 400;
+  text-align: center;
+}
+.sizeName span {
+  font-size: 0.75rem;
+  color: var(--main-color);
+  font-weight: 200;
+}
+.extrasTitle {
+  margin: 3rem 0 1rem;
+  color: var(--main-color);
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 1.125rem;
+}
+.extraItem {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+}
+.checkbox {
+  margin-right: 0.5rem;
+}
+.quantity {
+  height: 2rem;
+  width: 3rem;
+  margin-right: 0.5rem;
+  text-align: center;
+}
+.button {
+  height: 2rem;
+  padding: 0 1rem;
+  margin-top: 2rem;
+  background-color: var(--main-color);
+  color: var(--light-color);
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  font-weight: medium;
+  text-transform: capitalize;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}

@@ -1,0 +1,40 @@
+.container {
+  height: 50vh;
+  width: 100%;
+
+  display: flex;
+  background-color: var(--dark-color);
+}
+
+.bg {
+  position: relative;
+  flex: 2;
+}
+.item {
+  flex: 3;
+  padding: 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+.card {
+    flex: 1;
+    padding: 1rem;
+}
+.motto {
+  color: var(--light-color);
+  font-size: 3rem;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+.title {
+    margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: var(--main-color);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.text {
+  color: var(--light-color);
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}

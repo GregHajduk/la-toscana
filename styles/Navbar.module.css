@@ -1,0 +1,76 @@
+.container {
+  height: 10rem;
+  padding: 0em 3em;
+  display: flex;
+  align-items: center;
+  background-color: var(--light-color);
+  border-bottom: 1px solid var(--main-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.item:nth-child(2) {
+  flex: 3;
+}
+.item:nth-child(3) {
+  justify-content: flex-end;
+}
+.callButton {
+  background-color: var(--main-color);
+  padding: 0.5rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+.texts {
+  color: var(--main-color);
+  cursor: pointer;
+}
+.text:first-child {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--dark-color);
+}
+.text:last-child {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--main-color);
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.menuItem {
+  cursor: pointer;
+}
+
+.cartContainer {
+  position: relative;
+  cursor: pointer;
+}
+.cart {
+  font-size: 2rem;
+}
+.counter {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--main-color);
+  top: -5px;
+  right: -10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--light-color);
+  border-radius: 50%;
+}
