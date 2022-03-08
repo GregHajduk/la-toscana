@@ -1,11 +1,35 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../../styles/Product.module.css";
 import axios from "axios";
+import ExtraOrderOptions from "../../components/ExtraOrderOptions";
 
 const Product = ({ wine }) => {
-  const [size, setSize] = useState(0);
-  console.log(wine)
+  const [bottlesAmount, setBottlesAmount] = useState(0);
+  const [totalExtrasPrice, setTotalExtrasPrice] = useState(0);
+  const [grandTotal, setGrandTotal] = useState(wine.prices[bottlesAmount]);
+
+  const handleChange = (e, extra) => {
+    const checked = e.target.checked;
+    const price = extra.price;
+
+    if (checked) {
+      setTotalExtrasPrice(
+        (Number(totalExtrasPrice) + price).toFixed(2)
+      );
+    } else {
+      setTotalExtrasPrice(
+        (Number(totalExtrasPrice) - price).toFixed(2)
+      );
+    }
+  };
+
+  useEffect(() => {
+    setGrandTotal(
+      (wine.prices[bottlesAmount] + Number(totalExtrasPrice)).toFixed(2)
+    );
+  });
+
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -19,13 +43,13 @@ const Product = ({ wine }) => {
         </div>
       </div>
       <div className={styles.right}>
-        <h1 className={styles.title}>{wine.name}</h1>
-        <span className={styles.price}>${wine.prices[size]}</span>
+        <h1 className={styles.title}>{wine.title}</h1>
+        <span className={styles.price}>${wine.prices[bottlesAmount]}</span>
         <p className={styles.desc}>{wine.desc}</p>
         <div className={styles.sizeContainer}>
           <h3 className={styles.sizeTitle}>choose the size</h3>
           <div className={styles.sizesContainer}>
-            <div className={styles.size} onClick={() => setSize(0)}>
+            <div className={styles.size} onClick={() => setBottlesAmount(0)}>
               <Image
                 src="/images/single bottle icon.svg"
                 height="40"
@@ -33,10 +57,10 @@ const Product = ({ wine }) => {
               />
               <p className={styles.sizeName}>bottle</p>
             </div>
-            <div className={styles.size} onClick={() => setSize(1)}>
+            <div className={styles.size} onClick={() => setBottlesAmount(1)}>
               <Image src="/images/case icon.svg" height="40" width="40" />
               <p className={styles.sizeName}>
-                case <span>(6 bottles)</span>{" "}
+                case <span>(6 bottles)</span>
               </p>
             </div>
           </div>
@@ -45,36 +69,13 @@ const Product = ({ wine }) => {
           those would go well with your wine
         </h4>
         <div className={styles.extras}>
-          <div className={styles.extraItem}>
-            <input
-              type="checkbox"
-              id="cheese"
-              name="cheese"
-              className={styles.checkbox}
-            />
-            <label htmlFor="cheese">italian cheese</label>
-          </div>
-          <div className={styles.extraItem}>
-            <input
-              type="checkbox"
-              id="ham"
-              name="ham"
-              className={styles.checkbox}
-            />
-            <label htmlFor="ham">parma ham</label>
-          </div>
-          <div className={styles.extraItem}>
-            <input
-              type="checkbox"
-              id="olives"
-              name="olives"
-              className={styles.checkbox}
-            />
-            <label htmlFor="olives">olives</label>
-          </div>
+          <ExtraOrderOptions wine={wine} handleChange={handleChange} />
         </div>
         <div className={styles.add}>
           <input type="number" defaultValue={1} className={styles.quantity} />
+          <h2>
+            total: <span className={styles.total}>${grandTotal}</span>
+          </h2>
           <button className={styles.button}>add to cart</button>
         </div>
       </div>
