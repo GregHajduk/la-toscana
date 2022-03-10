@@ -6,29 +6,23 @@ import ExtraOrderOptions from "../../components/ExtraOrderOptions";
 
 const Product = ({ wine }) => {
   const [bottlesAmount, setBottlesAmount] = useState(0);
-  const [totalExtrasPrice, setTotalExtrasPrice] = useState(0);
-  const [grandTotal, setGrandTotal] = useState(wine.prices[bottlesAmount]);
+  const [extraOptions, setExtraOptions] = useState([]);
+  const [price, setPrice] = useState(wine.prices[bottlesAmount]);
 
   const handleChange = (e, extra) => {
     const checked = e.target.checked;
-    const price = extra.price;
 
     if (checked) {
-      setTotalExtrasPrice(
-        (Number(totalExtrasPrice) + price).toFixed(2)
-      );
+
+      setPrice((Number(price) + extra.price).toFixed(2));
+      setExtraOptions((prev) => [...prev, extra]);
     } else {
-      setTotalExtrasPrice(
-        (Number(totalExtrasPrice) - price).toFixed(2)
+      setPrice((Number(price) - extra.price).toFixed(2));
+      setExtraOptions(
+        extraOptions.filter((extraOption) => extraOption._id !== extra._id)
       );
     }
   };
-
-  useEffect(() => {
-    setGrandTotal(
-      (wine.prices[bottlesAmount] + Number(totalExtrasPrice)).toFixed(2)
-    );
-  });
 
   return (
     <div className={styles.container}>
@@ -74,7 +68,7 @@ const Product = ({ wine }) => {
         <div className={styles.add}>
           <input type="number" defaultValue={1} className={styles.quantity} />
           <h2>
-            total: <span className={styles.total}>${grandTotal}</span>
+            total: <span className={styles.total}>${price}</span>
           </h2>
           <button className={styles.button}>add to cart</button>
         </div>
